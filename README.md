@@ -77,11 +77,30 @@ php artisan serve
 ### 1. Instalar dependências
 
 ```bash
+# Baixar e instalar NVM (Node Version Manager):
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# Carregar NVM no shell atual:
+\. "$HOME/.nvm/nvm.sh"
+
+# Instalar Node.js versão 24:
+nvm install 24
+
+# Usar Node.js versão 24:
+node -v # Deve mostrar v24.x.x
+
+# Verificar npm:
+npm -v # Deve mostrar a versão do npm
+
+
 # Navegar para o diretório frontend
 cd frontend/
 
 # Instalar packages
 npm install
+
+# Inicializar Tailwind CSS
+npx node_modules/tailwindcss init -p
 ```
 
 ### 2. Configurar API URL
