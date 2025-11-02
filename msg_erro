@@ -1,0 +1,49 @@
+[server] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/lib/php/20230831/mysqli (/usr/lib/php/20230831/mysqli: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/mysqli.so (/usr/lib/php/20230831/mysqli.so: undefined symbol: mysqlnd_global_stats)) in Unknown on line 0
+[server] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/lib/php/20230831/openssl (/usr/lib/php/20230831/openssl: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/openssl.so (/usr/lib/php/20230831/openssl.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[server] PHP Warning:  Module "curl" is already loaded in Unknown on line 0
+[server] PHP Warning:  Module "fileinfo" is already loaded in Unknown on line 0
+[server] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[queue] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/lib/php/20230831/mysqli (/usr/lib/php/20230831/mysqli: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/mysqli.so (/usr/lib/php/20230831/mysqli.so: undefined symbol: mysqlnd_global_stats)) in Unknown on line 0
+[queue] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/lib/php/20230831/openssl (/usr/lib/php/20230831/openssl: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/openssl.so (/usr/lib/php/20230831/openssl.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[queue] PHP Warning:  Module "curl" is already loaded in Unknown on line 0
+[queue] PHP Warning:  Module "fileinfo" is already loaded in Unknown on line 0
+[queue] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[logs] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/lib/php/20230831/mysqli (/usr/lib/php/20230831/mysqli: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/mysqli.so (/usr/lib/php/20230831/mysqli.so: undefined symbol: mysqlnd_global_stats)) in Unknown on line 0
+[logs] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/lib/php/20230831/openssl (/usr/lib/php/20230831/openssl: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/openssl.so (/usr/lib/php/20230831/openssl.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[logs] PHP Warning:  Module "curl" is already loaded in Unknown on line 0
+[logs] PHP Warning:  Module "fileinfo" is already loaded in Unknown on line 0
+[logs] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[queue] 
+[queue]    INFO  Processing jobs from the [default] queue.  
+[queue] 
+[logs] 
+[logs]    INFO  Tailing application logs.                        Press Ctrl+C to exit  
+[logs]                                                Use -v|-vv to show more details  
+[queue] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/lib/php/20230831/mysqli (/usr/lib/php/20230831/mysqli: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/mysqli.so (/usr/lib/php/20230831/mysqli.so: undefined symbol: mysqlnd_global_stats)) in Unknown on line 0
+[queue] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/lib/php/20230831/openssl (/usr/lib/php/20230831/openssl: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/openssl.so (/usr/lib/php/20230831/openssl.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[queue] PHP Warning:  Module "curl" is already loaded in Unknown on line 0
+[queue] PHP Warning:  Module "fileinfo" is already loaded in Unknown on line 0
+[queue] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[server]   PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/lib/php/20230831/mysqli (/usr/lib/php/20230831/mysqli: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/mysqli.so (/usr/lib/php/20230831/mysqli.so: undefined symbol: mysqlnd_global_stats)) in Unknown on line 0
+[server]   PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/lib/php/20230831/openssl (/usr/lib/php/20230831/openssl: cannot open shared object file: No such file or directory), /usr/lib/php/20230831/openssl.so (/usr/lib/php/20230831/openssl.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[server]   PHP Warning:  Module "curl" is already loaded in Unknown on line 0
+[server]   PHP Warning:  Module "fileinfo" is already loaded in Unknown on line 0
+[server]   PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[server] 
+[server]    INFO  Server running on [http://127.0.0.1:8000].  
+[server] 
+[server]   Press Ctrl+C to stop the server
+[server] 
+[vite] 
+[vite] > backend@1.0.0 dev
+[vite] > vite
+[vite] 
+[vite] sh: 1: vite: not found
+[vite] npm run dev exited with code 127
+--> Sending SIGTERM to other processes..
+[queue] php artisan queue:listen --tries=1 exited with code SIGTERM
+--> Sending SIGTERM to other processes..
+[server] php artisan serve exited with code SIGTERM
+--> Sending SIGTERM to other processes..
+[logs] 
+[logs] php artisan pail --timeout=0 exited with code SIGTERM
