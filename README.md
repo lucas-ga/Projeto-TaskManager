@@ -1,47 +1,228 @@
-# Projeto-TaskManager
-Sistema de Gerenciamento de Tarefas
+# 📋 Projeto TaskManager
 
-# passos pra fazer funcionar o backend
+Sistema de Gerenciamento de Tarefas com Laravel (Backend) e Vue (Frontend)
 
-## baixar ferramentas necessárias
-> $ sudo apt update
+## 📚 Tecnologias
 
-> $ sudo apt install php mysql-server nodejs npm 7zip php-curl php-mbstring php-mysql php-xml
+- **Backend:** Laravel 11 + MySQL + Sanctum
+- **Frontend:** Vue + Tailwind CSS + Vite
+- **API:** RESTful com autenticação Bearer Token
 
-## instalar composer
-> $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+---
 
-> $ php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+## 🚀 Setup do Backend
 
-> $ php composer-setup.php
+### 1. Pré-requisitos
 
-> $ php -r "unlink('composer-setup.php');"
+```bash
+# Instalar dependências do sistema
+sudo apt update
+sudo apt install php mysql-server nodejs npm php-curl php-mbstring php-mysql php-xml php-zip
+```
 
-## instalar laravel
-> $ composer global require laravel/installer
+### 2. Instalar Composer
 
-## preparar banco mysql
-> $ sudo mysql
+```bash
+# Download e instalação do Composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
 
-> mysql\> CREATE DATABASE laravel_db;
+### 3. Configurar MySQL
 
-> mysql\> CREATE USER 'laravel_user'@'localhost' IDENTIFIED BY 'senha123';
+```sql
+-- Entrar no MySQL
+sudo mysql
 
-> mysql\> GRANT ALL PRIVILEGES ON 'laravel_db.* TO 'laravel_user'@'localhost' WITH GRANT OPTION;
+-- Criar banco e usuário
+CREATE DATABASE taskmanager_db;
+CREATE USER 'taskmanager_user'@'localhost' IDENTIFIED BY 'senha123';
+GRANT ALL PRIVILEGES ON taskmanager_db.* TO 'taskmanager_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
 
-> mysql\> FLUSH PRIVILEGES;
+### 4. Configurar Laravel
 
-## rodar backend
-> $ composer update
+```bash
+# Navegar para o diretório backend
+cd backend/
 
-> $ composer install
+# Instalar dependências
+composer install
 
-> $ php artisan migrate
+# Configurar ambiente
+cp .env.example .env
+php artisan key:generate
 
-> $ php artisan key:generate
+# Configurar banco no .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=taskmanager_db
+DB_USERNAME=taskmanager_user
+DB_PASSWORD=senha123
 
-> $ composer run dev
+# Executar migrações e seeders
+php artisan migrate --seed
 
-# passos pra fazer funcionar o frontend
+# Iniciar servidor
+php artisan serve
+```
 
-> $ composer 
+---
+
+## 🌐 Setup do Frontend
+
+### 1. Instalar dependências
+
+```bash
+# Navegar para o diretório frontend
+cd frontend/
+
+# Instalar packages
+npm install
+```
+
+### 2. Configurar API URL
+
+```javascript
+// src/config/api.js
+export const API_BASE_URL = 'http://localhost:8000/api';
+```
+
+### 3. Iniciar desenvolvimento
+
+```bash
+npm run dev
+```
+
+---
+
+## 📖 Endpoints da API
+
+### Autenticação
+
+| Método | Endpoint | Descrição | Headers |
+|--------|----------|-----------|---------|
+| `POST` | `/api/register` | Registrar usuário | `Content-Type: application/json` |
+| `POST` | `/api/login` | Login | `Accept: application/json` |
+
+**Exemplo Register:**
+```json
+{
+  "name": "João Silva",
+  "email": "joao@email.com",
+  "password": "senha123",
+  "password_confirmation": "senha123"
+}
+```
+
+### Tasks (Protegidas)
+
+| Método | Endpoint | Descrição | Auth |
+|--------|----------|-----------|------|
+| `GET` | `/api/tasks` | Listar tasks | Bearer Token |
+| `POST` | `/api/tasks` | Criar task | Bearer Token |
+| `GET` | `/api/tasks/{id}` | Ver task | Bearer Token |
+| `PUT` | `/api/tasks/{id}` | Atualizar task | Bearer Token |
+| `DELETE` | `/api/tasks/{id}` | Deletar task | Bearer Token |
+
+**Headers para requests protegidas:**
+```
+Authorization: Bearer {seu_token_aqui}
+Content-Type: application/json
+Accept: application/json
+```
+
+**Exemplo Task:**
+```json
+{
+  "title": "Minha tarefa",
+  "description": "Descrição da tarefa",
+  "completed": false
+}
+```
+
+---
+
+## 🧪 Testando a API
+
+### 1. Usuário de Teste (Seeder)
+```
+Email: test@example.com
+Senha: password
+```
+
+### 2. Workflow de Teste
+
+```bash
+# 1. Registrar/Login
+curl -X POST http://localhost:8000/api/login \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"email":"test@example.com","password":"password"}'
+
+# 2. Copiar o token da resposta
+
+# 3. Listar tasks
+curl -X GET http://localhost:8000/api/tasks \
+  -H "Authorization: Bearer SEU_TOKEN_AQUI" \
+  -H "Accept: application/json"
+```
+
+---
+
+## 🛠️ Comandos Úteis
+
+```bash
+# Backend
+php artisan migrate:fresh --seed  # Reset DB + Seeders
+php artisan route:list            # Ver todas as rotas
+php artisan config:clear          # Limpar cache
+
+# Frontend
+npm run build                     # Build para produção
+npm run preview                   # Preview do build
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+Projeto-TaskManager/
+├── backend/                 # Laravel API
+│   ├── app/Http/Controllers # Controllers da API
+│   ├── app/Models/          # Models (User, Task)
+│   ├── database/migrations/ # Migrações do banco
+│   └── routes/api.php       # Rotas da API
+├── frontend/                # Vue App
+│   ├── src/components/      # Componentes Vue
+│   ├── src/pages/          # Páginas
+│   └── src/services/       # Serviços da API
+└── README.md
+```
+
+---
+
+## 🚀 Deploy
+
+### Backend (Laravel)
+- Configure `.env` para produção
+- `php artisan config:cache`
+- `php artisan route:cache`
+
+### Frontend (Vue)
+- `npm run build`
+- Deploy da pasta `dist/`
+
+---
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie sua branch (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Add: Nova feature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
